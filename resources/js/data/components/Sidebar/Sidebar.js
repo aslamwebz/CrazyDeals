@@ -21,6 +21,45 @@ const Div = styled.div`
     clear: both;
 }
 
+
+#sidebar .checklist {
+  padding: 0;
+}
+
+.checklist ul li  {
+  font-size: 14px;
+  font-weight: 400;
+  list-style: none;
+  padding: 7px 0 7px 23px;
+}
+
+.checklist li span {
+  float: left;
+  width: 11px;
+  height: 11px;
+  margin-left: -23px;
+  margin-top: 4px;
+  position: relative;
+}
+
+.sizes li span,
+.categories .sizes li {
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+
+.checklist .checked span {
+  border-color: #8d939f;
+}
+
+#sidebar img {
+  margin-top: 6px;
+}
+
 `;
 
 const Sidebar = () => {
@@ -35,58 +74,59 @@ const Sidebar = () => {
         <h3>CATEGORIES</h3>
         <div className="checklist categories">
           <ul>
-            <li><a href="/itemlist"><span></span>New Arivals</a></li>
-            <li><a href="/itemlist"><span></span>Accesories</a></li>
-            <li><a href="/itemlist"><span></span>Bags</a></li>
-            <li><a href="/itemlist"><span></span>Dressed</a></li>
-            <li><a href="/itemlist"><span></span>Jackets</a></li>
-            <li><a href="/itemlist"><span></span>jewelry</a></li>
-            <li><a href="/itemlist"><span></span>Shoes</a></li>
-            <li><a href="/itemlist"><span></span>Shirts</a></li>
-            <li><a href="/itemlist"><span></span>Sweaters</a></li>
-            <li><a href="/itemlist"><span></span>T-shirts</a></li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>New Arivals</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>Accesories</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>Bags</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>Dressed</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>Jackets</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>jewelry</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>Shoes</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>Shirts</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>Sweaters</li>
+            <li><span>
+              <input className="styled-checkbox" type="checkbox" />
+            </span>T-shirts</li>
           </ul>
         </div>
-
-        <h3>COLORS</h3>
-        <div className="checklist colors">
-          <ul>
-            <li><a href="/itemlist"><span></span>Beige</a></li>
-            <li><a href="/itemlist"><span style={{ background: '#222' }}></span>Black</a></li>
-            <li><a href="/itemlist"><span style={{ background: ' #6e8cd5' }}></span>Blue</a></li>
-            <li><a href="/itemlist"><span style={{ background: '#f56060' }}></span>Brown</a></li>
-            <li><a href="/itemlist"><span style={{ background: '#44c28d' }}></span>Green</a></li >
-          </ul >
-
-          <ul>
-            <li><a href="/itemlist"><span style={{ background: '#999' }}></span>Grey</a></li>
-            <li><a href="/itemlist"><span style={{ background: '#f79858' }}></span>Orange</a></li >
-            <li><a href="/itemlist"><span style={{ background: '#b27ef8' }}></span>Purple</a></li >
-            <li><a href="/itemlist"><span style={{ background: '#f56060' }}></span>Red</a></li >
-            <li><a href="/itemlist"><span style={{ background: "#fff, border: 1px solid #e8e9eb,width:13px,height:13px," }}></span>White</a></li >
-          </ul >
-        </div >
 
         <h3>SIZES</h3>
         <div className="checklist sizes">
           <ul>
-            <li><a href="/itemlist"><span></span>XS</a></li>
-            <li><a href="/itemlist"><span></span>S</a></li>
-            <li><a href="/itemlist"><span></span>M</a></li>
-          </ul>
+            <li><span><input className="styled-checkbox" type="checkbox" /></span>XSs</li>
+            <li><span><input className="styled-checkbox" type="checkbox" /></span>Ss</li>
+            <li><span><input className="styled-checkbox" type="checkbox" /></span>Ms</li >
+          </ul >
 
           <ul>
-            <li><a href="/itemlist"><span></span>L</a></li>
-            <li><a href="/itemlist"><span></span>XL</a></li>
-            <li><a href="/itemlist"><span></span>XXL</a></li>
-          </ul>
-        </div>
+            <li><span><input className="styled-checkbox" type="checkbox" /></span>Ls</li>
+            <li><span><input className="styled-checkbox" type="checkbox" /></span>XLs</li >
+            <li><span><input className="styled-checkbox" type="checkbox" /></span>XXLs</li >
+          </ul >
+        </div >
 
         <h3>PRICE RANGE</h3>
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/price-range.png" alt="" />
       </div >
 
-    </Div>
+    </Div >
   )
 }
 

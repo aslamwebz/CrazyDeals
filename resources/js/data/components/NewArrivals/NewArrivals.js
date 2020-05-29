@@ -1,5 +1,5 @@
 import React from 'react'
-import Product from '../Product/Product'
+import ProductC from '../Product/ProductC'
 import styled from 'styled-components'
 
 const Div = styled.div`
@@ -20,11 +20,10 @@ const NewArrivals = () => {
         <Div className="container-fluid p-3 ">
             <h3 className="text-center">New Arrivals</h3>
             <div className="card-group">
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                <ProductC />
+                <ProductC />
+                <ProductC />
+                <ProductC />
             </div>
         </Div>
     )

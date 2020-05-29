@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 const Nav = styled.nav`
   padding:20px !important;
-  margin-bottom: 10px;
   border-bottom:0.5px solid rgba(0,0,0, 0.3);
   li a {
     font-weight:700;
@@ -38,7 +37,7 @@ export const Navbar = () => {
               <a className="nav-link" href="#">My Wishlist</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Check out</a>
+              <a className="nav-link" href="/cart">Cart</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">My Account</a>

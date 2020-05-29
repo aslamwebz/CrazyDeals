@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import './styleCard.css';
-import Product from '../Product/Product';
+import ProductC from '../Product/ProductC';
 
 const Div = styled.div`
 
@@ -18,20 +18,20 @@ margin:30px;
 const ShowCards = () => {
     return (
         <Div>
-            <div class="container-fluid">
+            <div className="container-fluid">
                 <div className="row">
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    <ProductC />
+                    <ProductC />
+                    <ProductC />
+                    <ProductC />
+                    <ProductC />
                 </div>
-                <div class="row">
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                <div className="row">
+                    <ProductC />
+                    <ProductC />
+                    <ProductC />
+                    <ProductC />
+                    <ProductC />
                 </div>
             </div>
         </Div >
