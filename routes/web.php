@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('search/{query}', 'SearchController@search');
 
 Route::view('/{path?}', 'layouts.app')
      ->where('path', '.*')

@@ -1,93 +1,123 @@
+
 import React, { useEffect, useState } from 'react'
-import { loadLogic } from './Logic'
 import styled from 'styled-components'
 import Axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const Div = styled.div`
-a{
-    text-decoration: none;
+.card{
+    height:33 0px;
+    width:280px;
+    margin:10px;
+    padding:10px;
+}
+
+.card .img-wrap{
+    width: 270px;
+    height: 270px;
+    float: none;
+}
+.card img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+
+}
+
+.card-title{
+    font-size:15px;
+    font-weight:500;
     color:black;
 }
+
+
+a{
+    text-decoration: none;
+    color:white;
+}
+
+.card-text{
+    font-size: 15px;
+    color: #0099e5;
+    font-weight:500;
+}
+
+span.rating{
+    font-size:15px;
+    color:black;
+}
+
+span.rating .grey{
+    font-size:15px;
+    color:grey;
+}
+
+ span.price{
+     font-size:13px;
+    color:black;
+    text-decoration: line-through;
+    margin-left:5px;
+}
+
+span.priceNow{
+    background:#3490dc;
+    color:#fff;
+    padding: 6px 10px;
+}
+
 `
 
 const Product = ({ product }) => {
 
-    const [images, setImages] = useState([]);
+    // const [images, setImages] = useState([]);
+    // const [product, setProduct] = useState([]);
 
-    useEffect(() => {
-        loadLogic()
-        getImages()
-    }, [])
+    // useEffect(() => {
+    //     getProduct()
+    //     // getImages()
+    // }, [])
 
-    const getImages = () => {
-        Axios.get('/api/products/' + product.id + '/images')
-            .then(res => {
-                setImages(res.data.images)
-            }
-            )
-    }
+    // const getProduct = () => {
+    //     Axios.get('/api/electronics/' + 1)
+    //         .then(res => {
+    //             setProduct(res.data.product)
+    //         }
+    //         )
+    // }
+
+    // const getImages = () => {
+    //     Axios.get('/api/electronics/' + 1 + '/images')
+    //         .then(res => {
+    //             setImages(res.data.eimages)
+    //         }
+    //         )
+    // }
 
     // const image = `images/electronics/${product.id}/${product.image}`
-    const img = `images/electronics/1/${product.image}`
+    const img = `images/${product.image}`
 
     const data = () => {
-        return <div className="product" >
-            <div className="info-large">
-                <div className="sku">
-                    PRODUCT SKU: <strong>89356</strong>
+        return <div className="product">
+            <div className="card text-left">
+                <div className="img-wrap">
+                    <img className="card-img-top" src={img} alt="" />
                 </div>
+                <div className="card-body">
+                    <h4 className="card-title">{product.name}</h4>
 
-                <div className="price-big">
-                    <span>$43</span> $39zs
-    </div>
+                    <p className="card-text">
 
-                <h3>COLORS</h3>
-                <div className="colors-large">
-                    <ul>
-                        <li><p href="/itemlist" style={{ background: ' #222' }}><span></span></p></li>
-                        <li><p href="/itemlist" style={{ background: '#6e8cd5' }}><span></span></p></li>
-                        <li><p href="/itemlist" style={{ background: '#f56060' }}><span></span></p></li>
-                        <li><p href="/itemlist" style={{ background: '#44c28d' }}><span></span></p></li>
-                    </ul >
-                </div >
+                        <span className="priceNow">${product.price - product.discount}.00</span>
+                        <span className="price">${product.price}.00</span>
 
-                <h3>SIZE</h3>
-                <div className="sizes-large">
-                    <span>XS</span>
-                    <span>S</span>
-                    <span>M</span>
-                    <span>L</span>
-                    <span>XL</span>
-                    <span>XXL</span>
+                    </p>
                 </div>
-
-                <button className="add-cart-large">Add To Cart</button>
-
-            </div >
-            <div className="make3D"  >
-                <div className="product-front">
-                    <div className="shadow"></div>
-                    <img src={img} alt="" />
-                    <div className="stats">
-                        <div className="stats-container">
-                            <span className="product_name">{product.name}</span>
-                            <br />
-                            <br />
-                            <span className="product_price">${product.price}</span>
-                            <p>Free Shipping</p>
-                            <p>108 SOLD</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div >
-
-
     }
 
-    const itemPath = `item/${product.id}`
+    const itemPath = `item/${product.category}/${product.id}`
 
     return (
         <Div>

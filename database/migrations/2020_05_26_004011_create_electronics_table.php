@@ -16,7 +16,7 @@ class CreateElectronicsTable extends Migration
         Schema::create('electronics', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('quantity');
+            $table->integer('available');
             $table->integer('price');
             $table->integer('discount');
             $table->integer('sold');
@@ -31,7 +31,11 @@ class CreateElectronicsTable extends Migration
             $table->string('color');
             $table->string('os');
             $table->string('storage');
+            $table->string('storage_type');
+            $table->string('graphics');
             $table->string('image');
+            $table->string('category');
+            $table->string('sub_category');
             $table->timestamps();
         });
     }

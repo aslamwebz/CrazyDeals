@@ -8,8 +8,8 @@ class Electronics extends Model
 {
 
     protected $fillable = [
-        'name','quantity','price','discount','sold','brand','model','condition'
-        ,'year','processor','speed','memory','screen','color','os','storage', 'image'];
+        'name','available','price','discount','sold','brand','model','condition'
+        ,'year','processor','speed','memory','screen','color','os','storage', 'image', 'storage_type', 'graphics', 'category', 'sub_category'];
        
 
     public function electronicsImage(){

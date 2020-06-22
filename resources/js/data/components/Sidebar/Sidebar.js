@@ -3,9 +3,7 @@ import styled from 'styled-components'
 
 const Div = styled.div`
   #sidebar {
-    float: left;
     background: #fff;
-    width: 275px;
     padding: 13px 0 0 45px;
     height: 1400px;
     border-right: 1px solid #eee;
@@ -76,34 +74,13 @@ const Sidebar = () => {
           <ul>
             <li><span>
               <input className="styled-checkbox" type="checkbox" />
-            </span>New Arivals</li>
+            </span>Electronics</li>
             <li><span>
               <input className="styled-checkbox" type="checkbox" />
-            </span>Accesories</li>
+            </span>Mobiles</li>
             <li><span>
               <input className="styled-checkbox" type="checkbox" />
-            </span>Bags</li>
-            <li><span>
-              <input className="styled-checkbox" type="checkbox" />
-            </span>Dressed</li>
-            <li><span>
-              <input className="styled-checkbox" type="checkbox" />
-            </span>Jackets</li>
-            <li><span>
-              <input className="styled-checkbox" type="checkbox" />
-            </span>jewelry</li>
-            <li><span>
-              <input className="styled-checkbox" type="checkbox" />
-            </span>Shoes</li>
-            <li><span>
-              <input className="styled-checkbox" type="checkbox" />
-            </span>Shirts</li>
-            <li><span>
-              <input className="styled-checkbox" type="checkbox" />
-            </span>Sweaters</li>
-            <li><span>
-              <input className="styled-checkbox" type="checkbox" />
-            </span>T-shirts</li>
+            </span>Cloths</li>
           </ul>
         </div>
 

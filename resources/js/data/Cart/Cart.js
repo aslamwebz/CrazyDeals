@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Header from '../components/components/Header'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import Checkout from './Checkout'
@@ -176,6 +177,7 @@ const Cart = (props) => {
 
     return (
         <Div>
+            <Header />
             <div className="row">
                 <div className="col-md-8">
                     <table className="table table-bordered table-striped">

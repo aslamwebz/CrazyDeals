@@ -14,19 +14,19 @@ class ElectronicsController extends Controller
      */
     public function index()
     {
-        $products = Electronics::all();
+        $electronics = Electronics::paginate(10);;
 
         return response()->json([
-            'products' => $products
+            'electronics' => $electronics
         ]);
     }
 
     public function getImages($id)
     {
         $item = Electronics::find($id);
-        $images = $item ->electronicsImage;
+        $eimages = $item ->electronicsImage;
         return response()->json([
-            'images' =>  $images
+            'eimages' =>  $eimages
         ]);
     }
 
@@ -38,7 +38,42 @@ class ElectronicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+             'quantity' => 'required',
+             'price' => 'required',
+             'discount' => 'required',
+            'brand' => 'required',
+            'model' => 'required',
+            'condition' => 'required',
+            'year' => 'required',
+            'processor' => 'required',
+            'speed' => 'required',
+            'memory' => 'required',
+            'screen' => 'required',
+            'color' => 'required',
+            'os' => 'required',
+            'storage' => 'required',
+            'image' => 'required',
+         ]);
+
+         $electronic = new Electronics($request->all());
+
+         $image = $request->get('image');
+         $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+         \Image::make($request->get('image'))->save(public_path('images/').$name);
+
+        //  $imageName = time().'.'.request()->image->getClientOriginalExtension();
+
+        //  request()->image->move(public_path(`images`), $imageName);
+ 
+         $electronic->image = $name;
+         $electronic->sold =1;
+
+        $electronic->save();
+         return response()->json([
+             'message' =>    $name ,
+         ]);
     }
 
     /**
@@ -49,9 +84,9 @@ class ElectronicsController extends Controller
      */
     public function show($id)
     {
-        $item = Electronics::find($id);
+        $product = Electronics::find($id);
         return response()->json([
-            'item' => $item]);
+            'product' => $product]);
     }
 
     /**
@@ -74,7 +109,35 @@ class ElectronicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+           'name' => 'required',
+            'quantity' => 'required',
+            'price' => 'required',
+            'discount' => 'required',
+            'sold' => 'required',
+           'brand' => 'required',
+           'model' => 'required',
+           'condition' => 'required',
+           'year' => 'required',
+           'processor' => 'required',
+           'speed' => 'required',
+           'memory' => 'required',
+           'screen' => 'required',
+           'color' => 'required',
+           'os' => 'required',
+           'storage' => 'required',
+           'image' => 'required',
+        ]);
+
+        $electronics = Electronics::find($id);
+
+        $data = $request->productData;
+
+        $electronics->update($data);
+
+        return response()->json([
+            'message' => 'Product Updated Successfully',
+        ]);
     }
 
     /**
@@ -85,6 +148,13 @@ class ElectronicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $electronics = Electronics::find($id);
+
+        $electronics->delete();
+
+        return response()->json([
+            'message' => 'success'
+        ]);
     }
 }

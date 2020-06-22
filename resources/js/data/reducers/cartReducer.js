@@ -7,7 +7,6 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_CART:
-            console.log(action.payload)
             return {
                 ...state,
                 cart: action.payload
