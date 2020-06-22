@@ -40,7 +40,7 @@ const admin = (props) => {
     const history = useHistory()
     // console.log(props)
     const { currentUser } = useContext(AuthContext);
-    console.log(currentUser)
+    // console.log(currentUser)
     const [data, setData] = useState("electronics")
     const { operation, id } = props.match.params
 

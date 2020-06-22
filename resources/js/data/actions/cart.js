@@ -1,113 +1,113 @@
-import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
+//? get product by category
+export const getProduct = async (id, category) => {
+    let product = []
+    if (category === "electronics") {
+        product = await AxiosRun(`/api/electronics/${id}`)
+    }
 
+    if (category === "mobile") {
+        product = await AxiosRun(`/api/mobile/${id}`)
+    }
 
+    if (category === "fashion") {
+        product = await AxiosRun(`/api/fashion/${id}`)
+    }
 
-const cart = () => {
+    return product
+}
 
-    const [cart, setCart] = useState([])
-
-    useEffect(() => {
-        createCart()
-        fetchCart()
-    }, [])
-
-    const createCart = () => {
-        if (!localStorage.getItem('cart')) {
-            setCart([])
-            localStorage.setItem('cart', JSON.stringify(cart))
+//? get the product
+export const AxiosRun = async (url) => {
+    let product = []
+    product = await Axios.get(url)
+        .then(res => {
+            let p = res.data.product
+            return p
         }
+        )
 
+    return product
+}
+
+export const createCart = () => {
+    if (!localStorage.getItem('cart')) {
+        let cart = []
+        localStorage.setItem('cart', JSON.stringify(cart))
     }
 
-    const fetchCart = () => {
-        const cart = JSON.parse(localStorage.getItem('cart'))
-        setCart(cart)
-    }
+}
 
-    const addToCart = async (id) => {
-        let product = await Axios.get('/api/products/' + id)
-            .then(res => {
-                return res.data.item
-            }
-            )
+//? fetch current cart
+export const fetchCart = async () => {
+    createCart()
+    let cart = await JSON.parse(localStorage.getItem('cart'))
+    return cart
+}
 
-        const productExist = cart.find(item => item.id === id)
-        if (productExist && productExist.id === product.id) {
-            increaseQuantity(id)
+export const addItemToCart = async (id, category) => {
+
+    if (id) {
+        createCart()
+        //?get product and cart
+        let product = await getProduct(id, category)
+        let cart = await fetchCart()
+
+        //? check product exists
+        const productExist = cart.find(item => item.name === product.name)
+        //? if product exits increse product quantity
+        if (productExist && productExist.name === product.name) {
+            quantityIncrease(product.name)
         } else {
+            product = { ...product, quantity: 1 }
             let newCart = [...cart, product]
             localStorage.setItem('cart', JSON.stringify(newCart))
             let lcart = JSON.parse(localStorage.getItem('cart'))
-            setCart(lcart)
+            return lcart
         }
     }
-
-    const clearCart = () => {
-        let newCart = []
-        localStorage.setItem('cart', JSON.stringify(newCart))
-        let lcart = JSON.parse(localStorage.getItem('cart'))
-        setCart(lcart)
-    }
-
-    const increaseQuantity = async (id) => {
-        const newCart = await cart.map(item => {
-            if (item.id === id) {
-                item.quantity++
-                return item
-            } else {
-                return item
-            }
-        })
-
-        localStorage.setItem('cart', JSON.stringify(newCart))
-        let lcart = JSON.parse(localStorage.getItem('cart'))
-        setCart(lcart)
-    }
-
-    const decreaseQuantity = async (id) => {
-        const newCart = await cart.map(item => {
-            if (item.id === id) {
-                item.quantity--
-                return item
-            } else {
-                return item
-            }
-        })
-
-        localStorage.setItem('cart', JSON.stringify(newCart))
-        let lcart = JSON.parse(localStorage.getItem('cart'))
-        setCart(lcart)
-    }
-
-    const removeFromCart = async (id) => {
-        const newCart = await cart.filter(it => {
-            return it.id !== id
-        })
-
-        localStorage.setItem('cart', JSON.stringify(newCart))
-        let lcart = JSON.parse(localStorage.getItem('cart'))
-        setCart(lcart)
-    }
-
-
-    return (
-        <div className="container mt-4">
-            <ul>
-                {cart.map(item => {
-                    return <li key={item.id}>{item.name} - {item.quantity} </li>
-                })}
-                <br />
-                <br />
-                <br />
-                <button onClick={() => clearCart()}>Clear Cart</button>
-                <button onClick={() => addToCart(1)}>Add to cart</button>
-                <button onClick={() => increaseQuantity(1)}>Increase Quantity</button>
-                <button onClick={() => decreaseQuantity(1)}>Decrease Quantity</button>
-                <button onClick={() => removeFromCart(1)}>Remove From cart</button>
-            </ul>
-        </div >
-    )
 }
 
-export default cart
+export const clearCart = () => {
+    let newCart = []
+    localStorage.setItem('cart', JSON.stringify(newCart))
+}
+
+export const quantityIncrease = async (name) => {
+    let cart = await fetchCart()
+    const newCart = await cart.map(item => {
+        if (item.name === name) {
+            item.quantity++
+            return item
+        } else {
+            return item
+        }
+    })
+
+    localStorage.setItem('cart', JSON.stringify(newCart))
+}
+
+export const quantityDecrease = async (name) => {
+    let cart = await fetchCart()
+    const newCart = await cart.map(item => {
+        if (item.name === name) {
+            item.quantity--
+            return item
+        } else {
+            return item
+        }
+    })
+
+    localStorage.setItem('cart', JSON.stringify(newCart))
+}
+
+export const removeFromCart = async (id) => {
+    const newCart = await cart.filter(it => {
+        return it.id !== id
+    })
+
+    localStorage.setItem('cart', JSON.stringify(newCart))
+}
+
+
+

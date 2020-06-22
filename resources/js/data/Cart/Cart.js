@@ -3,9 +3,9 @@ import Header from '../components/components/Header'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import Checkout from './Checkout'
-import { fetchCart } from '../actions/cartActions'
+import { fetchCart, increaseQuantity, decreaseQuantity } from '../actions/cartActions'
 import { connect } from 'react-redux'
-
+import { v4 as uuidv4 } from 'uuid';
 const Div = styled.div`
 
 margin:40px;
@@ -39,7 +39,6 @@ margin:40px;
 
 `
 const Cart = (props) => {
-    console.log(props.cart, 'cart')
 
     const [items, setItems] = useState([])
 
@@ -48,13 +47,13 @@ const Cart = (props) => {
     }, [])
 
     useEffect(() => {
-        countTotal()
         setItems(props.cart)
+        countTotal(props.cart)
     }, [props.cart])
 
     const [subTotal, setSubTotal] = useState()
 
-    const countTotal = () => {
+    const countTotal = (items) => {
         let t = 0;
 
         items.map(item => {
@@ -108,44 +107,37 @@ const Cart = (props) => {
 
     }
 
-    const quantityController = (e, itemId, itemQuantity, itemAvailable) => {
+    const quantityController = (e, name, quantity, available) => {
 
-        const itemData = items.filter(item => {
-            if (item.id === itemId && itemQuantity >= 1 && itemQuantity < itemAvailable) {
+        items.filter(item => {
+            if (item.name === name && quantity >= 1 && quantity < available) {
                 if (e === '+') {
-                    return item.quantity = itemQuantity + 1
+                    props.increaseQuantity(name)
+
                 } else if (e === '-') {
-                    if (itemQuantity == 1) {
-                        return item.quantity
+                    if (quantity == 1) {
                     } else {
-                        return item.quantity = itemQuantity - 1
+                        props.decreaseQuantity(name)
                     }
                 }
-            } else {
-                return item
-            }
-
-        })
-
-        setItems(itemData)
-        countTotal()
-
-    }
-
-    const quantityControllerChange = (e, itemId, itemQuantity, itemAvailable) => {
-        const itemData = items.filter(item => {
-            if (item.id === itemId && e.target.tagName.toUpperCase() == 'INPUT') {
-                console.log(e.target.value)
-                return item.quantity = parseInt(e.target.value)
-            } else {
-                return item
             }
         })
-
-        setItems(itemData)
-        countTotal()
-
+        props.fetchCart()
     }
+
+    // const quantityControllerChange = (e) => {
+    //     const itemData = items.filter(item => {
+    //         if (item.id === itemId && e.target.tagName.toUpperCase() == 'INPUT') {
+    //             return item.quantity = parseInt(e.target.value)
+    //         } else {
+    //             return item
+    //         }
+    //     })
+
+    //     setItems(itemData)
+    //     countTotal()
+
+    // }
 
     const checkOut = () => {
         if (items.length === 0) {
@@ -193,17 +185,16 @@ const Cart = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {console.log(items, 'items')}
                             {items.map(item => {
-                                return (<tr key={item.id}>
+                                return (<tr key={uuidv4()}>
                                     <th scope="row">{item.id}</th>
                                     <td>{item.name}</td>
                                     <td>{item.price}</td>
                                     <td>
                                         <span className="d">
-                                            <button className="btn btn-info" onClick={e => quantityController("+", item.id, item.quantity, item.available)}>+</button>
+                                            <button className="btn btn-info" onClick={e => quantityController("+", item.name, item.quantity, item.available)}>+</button>
                                             <input value={item.quantity} readOnly />
-                                            <button className="btn btn-info" onClick={e => quantityController("-", item.id, item.quantity, item.available)}>-</button>
+                                            <button className="btn btn-info" onClick={e => quantityController("-", item.name, item.quantity, item.available)}>-</button>
                                         </span>
                                     </td>
                                     <td>{item.available}</td>
@@ -260,7 +251,7 @@ const Cart = (props) => {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body">q
                             <Checkout />
                         </div>
                         <div className="modal-footer">
@@ -280,4 +271,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { fetchCart })(Cart)
+export default connect(mapStateToProps, { fetchCart, increaseQuantity, decreaseQuantity })(Cart)

@@ -49,9 +49,6 @@ const Item = (props) => {
 
     useEffect(() => {
         getItem()
-        // getImages()
-        createCart()
-        fetchCart()
     }, [])
 
     const getItem = () => {
@@ -86,64 +83,6 @@ const Item = (props) => {
     // }
 
     const imagePath = `images/electronics/${id}/`
-
-    const createCart = () => {
-        if (!localStorage.getItem('cart')) {
-            setCart([])
-            localStorage.setItem('cart', JSON.stringify(cart))
-        }
-
-    }
-
-    const fetchCart = () => {
-        const cart = JSON.parse(localStorage.getItem('cart'))
-        setCart(cart)
-    }
-
-    const addToCart = async (id) => {
-        let product = await Axios.get('/api/electronics/' + id)
-            .then(res => {
-                return res.data.item
-            }
-            )
-
-        const productExist = cart.find(item => item.id === parseInt(id))
-        console.log(productExist)
-        if (productExist && productExist.id === product.id) {
-            increaseQuantity(parseInt(id))
-        } else {
-            let newCart = [...cart, product]
-            localStorage.setItem('cart', JSON.stringify(newCart))
-            let lcart = JSON.parse(localStorage.getItem('cart'))
-            setCart(lcart)
-            console.log("asd")
-
-        }
-    }
-
-    const clearCart = () => {
-        let newCart = []
-        localStorage.setItem('cart', JSON.stringify(newCart))
-        let lcart = JSON.parse(localStorage.getItem('cart'))
-        setCart(lcart)
-    }
-
-    const increaseQuantity = async (id) => {
-        const newCart = await cart.map(item => {
-            if (item.id === id) {
-                item.quantity++
-                return item
-            } else {
-                return item
-            }
-        })
-
-        localStorage.setItem('cart', JSON.stringify(newCart))
-        let lcart = JSON.parse(localStorage.getItem('cart'))
-        setCart(lcart)
-    }
-
-
 
     const sizes = () => {
         if (item.sizes) {
@@ -222,7 +161,7 @@ const Item = (props) => {
                                                 <input type="number" className="form-control" value={selectedQuantity} onChange={(e) => setSelectedQuantity(e.target.value)} min={1} max={item.available} />
                                             </div>
                                             <div className="col-md-4">
-                                                <button className="btn btn-large btn-danger" onClick={() => addToCart(id)}>ADD TO CART</button>
+                                                <button className="btn btn-large btn-danger" onClick={() => props.addToCart(item.id, item.category)}>ADD TO CART</button>
                                             </div>
                                         </div>
                                     </div>
@@ -247,18 +186,18 @@ const Item = (props) => {
 
                             <div className="row">
                                 <div className="card  text-white bg-secondary mb-3 container" >
-                                    <div class="card-header">
-                                        <ul class="nav nav-tabs card-header-tabs">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#">Description</a>
+                                    <div className="card-header">
+                                        <ul className="nav nav-tabs card-header-tabs">
+                                            <li className="nav-item">
+                                                <a className="nav-link active" href="#">Description</a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="card-body text-center">
+                                    <div className="card-body ">
 
                                         <div className="row">
-                                            <div className="col-md-4">
-                                                <Details category={item.category} />
+                                            <div className="col-md-12">
+                                                <Details item={item} />
                                             </div>
                                         </div>
                                     </div>
@@ -273,8 +212,8 @@ const Item = (props) => {
     )
 }
 
-const mapStateToProps = state => [{
+const mapStateToProps = state => ({
     cart: state.cart.cart
-}]
+})
 
 export default connect(mapStateToProps, { addToCart })(Item)

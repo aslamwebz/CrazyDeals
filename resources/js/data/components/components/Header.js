@@ -1,8 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useHistory } from "react-router-dom";
+import { itemCount } from '../../actions/cartActions'
+import { connect } from 'react-redux';
 
-const Header = () => {
+const Header = (props) => {
+    useEffect(() => {
+        props.itemCount()
+    }, [])
+
+    useEffect(() => {
+    }, [props.count])
+
     const history = useHistory()
     const [search, setsearch] = useState([])
 
@@ -15,7 +24,7 @@ const Header = () => {
                             <a className="nav-link" href="#">My Wishlist</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/cart">Cart</a>
+                            <a className="nav-link" href="/cart">Cart<i className="fas fa-shopping-cart"></i> {props.count} </a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">My Account</a>
@@ -222,8 +231,10 @@ text-align:center !important;
   width:10vw;
 }
 
-
-
 `
 
-export default Header
+const mapStateToProps = (state) => ({
+    count: state.cart.count
+})
+
+export default connect(mapStateToProps, { itemCount })(Header)

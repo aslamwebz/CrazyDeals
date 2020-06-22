@@ -1,5 +1,5 @@
-import { FETCH_CART, ADD_TO_CART } from "./types"
-import Axios from "axios"
+import { FETCH_CART, ADD_TO_CART, QUANTITY_INCREASE, QUANTITY_DECREASE, ITEM_COUNT } from "./types"
+import { addItemToCart, quantityIncrease, quantityDecrease } from "./cart"
 
 
 
@@ -11,41 +11,52 @@ export const fetchCart = () => dispatch => {
     })
 }
 
-export const addToCart = (id) => dispatch => {
-
-    // setCart(JSON.parse(localStorage.getItem('cart')))
-    // cartOld.map(it => {
-    //     if (it.id === id) {
-    //         it.quantity = it.quantity + 1
-    //         setAlreadyIn(true)
-    //     }
-    //     return it
-    // })
-
-    // if (alreadyIn === false) {
-    Axios.get('/api/products/' + id)
-        .then(res => {
-
-            const cartOld = JSON.parse(localStorage.getItem('cart'))
-
-            const item = res.data.item
-
-            const cart = [...cartOld, item]
-
-            localStorage.setItem('cart', JSON.stringify(cart))
-
-        })
-    // }
-
-
-    const newCart = JSON.parse(localStorage.getItem('cart'))
+export const addToCart = (id, category) => async dispatch => {
+    await addItemToCart(id, category)
     dispatch({
         type: ADD_TO_CART,
-        payload: newCart
+        payload: { id, category }
+    })
 
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    let count = 0;
+    cart.map(item => {
+        count++;
+    })
+
+    dispatch({
+        type: ITEM_COUNT,
+        payload: count
     })
 }
 
-export function quantityChange(id, operator) {
+export const increaseQuantity = (name) => async dispatch => {
+    await quantityIncrease(name)
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    dispatch({
+        type: QUANTITY_INCREASE,
+        payload: cart
+    })
+}
 
+export const decreaseQuantity = (name) => async dispatch => {
+    await quantityDecrease(name)
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    dispatch({
+        type: QUANTITY_DECREASE,
+        payload: cart
+    })
+}
+
+export const itemCount = () => dispatch => {
+    const cart = JSON.parse(localStorage.getItem('cart'))
+    let count = 0;
+    cart.map(item => {
+        count++;
+    })
+
+    dispatch({
+        type: ITEM_COUNT,
+        payload: count
+    })
 }

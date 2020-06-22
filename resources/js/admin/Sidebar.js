@@ -27,6 +27,18 @@ const Sidebar = () => {
                                 </a>
                             </li>
                             <li className="nav-item">
+                                <a type="button" href="" className="nav-link" onClick={(e) => handleClick(e, "/admin/")}>
+                                    <i className="ni ni-tv-2 text-primary"></i>
+                                    <span className="nav-link-text">My Orders</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a type="button" href="" className="nav-link" onClick={(e) => handleClick(e, "/admin/")}>
+                                    <i className="ni ni-tv-2 text-primary"></i>
+                                    <span className="nav-link-text">My Sales</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
                                 <a type="button" href="" className="nav-link" onClick={(e) => handleClick(e, "/admin/electronics")}>
                                     <i className="ni ni-planet text-info"></i>
                                     <span className="nav-link-text">Electronics</span>
@@ -44,12 +56,12 @@ const Sidebar = () => {
                                     <span className="nav-link-text">Mobile</span>
                                 </a>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <a className="nav-link" type="button" onClick={(e) => handleClick(e, "/admin/featured")}>
                                     <i className="ni ni-planet text-info"></i>
                                     <span className="nav-link-text">Featured</span>
                                 </a>
-                            </li>
+                            </li> */}
                             {/* <li className="nav-item">
                                 <a className="nav-link" href="examples/map.html">
                                     <i className="ni ni-pin-3 text-primary"></i>
@@ -68,7 +80,7 @@ const Sidebar = () => {
                                     <span className="nav-link-text">Tables</span>
                                 </a>
                             </li> */}
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <a className="nav-link" href="/login">
                                     <i className="ni ni-key-25 text-info"></i>
                                     <span className="nav-link-text">Login</span>
@@ -79,7 +91,7 @@ const Sidebar = () => {
                                     <i className="ni ni-circle-08 text-pink"></i>
                                     <span className="nav-link-text">Register</span>
                                 </a>
-                            </li>
+                            </li> */}
                             {/* <li className="nav-item">
                                 <a className="nav-link" href="examples/upgrade.html">
                                     <i className="ni ni-send text-dark"></i>
