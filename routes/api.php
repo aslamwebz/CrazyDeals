@@ -61,7 +61,7 @@ Route::get('cart','CartController@index');
 Route::post('cart','CartController@create');
 Route::put('cart/{id}','CartController@update');
 
-Route::get('search/{query}', 'SearchController@search');
+Route::get('search/{query}/{category}', 'SearchController@search');
 Route::post('search', 'SearchController@searchByCatogory');
 
 Route::middleware('auth:api')->group(function(){

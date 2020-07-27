@@ -13,8 +13,14 @@ const Header = (props) => {
     }, [props.count])
 
     const history = useHistory()
-    const [search, setsearch] = useState([])
+    const [search, setsearch] = useState("")
+    const [category, setcategory] = useState("all")
 
+
+    const handleCategoryChange = (e) => {
+        const cat = e.target.value;
+        setcategory(cat)
+    }
     return (
         <div>
             <SlimNav className="SlimNavbar navbar-expand-lg navbar-light bg-light">
@@ -38,86 +44,65 @@ const Header = (props) => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse ml-auto" id="navbarColor01">
-                    <ul className="navbar-nav mr-auto">
-                        <div className="form-group row">
 
-                            <form className="form-inline" onSubmit={(e) => {
-                                e.preventDefault
-                                history.push('/search/' + search)
+                    <ul className="navbar-nav mr-auto ">
+                        <li className="nav-item">
+                            <div className="dropdown" onMouseOver={() => {
+                                // $('.dropdown-toggle').dropdown('toggle')
                             }}>
-                                <input className="form-control form-control-sm ml-3" type="text" placeholder="Search"
-                                    aria-label="Search" value={search} onChange={(e) => setsearch(e.target.value)} />
-                                <button className="btn btn-large btn-info search">
-                                    <i className="fas fa-search" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </ul>
-
-                </div>
-
-
-            </Nav>
-            <NavSlim2 className="navbar navbar-expand-lg ">
-
-                <ul className="navbar-nav m-auto ">
-                    <li className="nav-item">
-                        <div className="dropdown" onMouseOver={() => {
-                            // $('.dropdown-toggle').dropdown('toggle')
-                        }}>
-                            <a className="nav-link dropdown-toggle " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                Electronics
+                                <a className="nav-link dropdown-toggle " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    Electronics
   </a>
-                            <div className="dropdown-menu  " aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="/electronics">Computers</a>
-                                <a className="dropdown-item" href="#">Laptops</a>
-                                <a className="dropdown-item" href="#">Accessories</a>
+                                <div className="dropdown-menu  " aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" href="/items/electronics">Computers</a>
+                                    <a className="dropdown-item" href="/items/electronics">Laptops</a>
+                                    <a className="dropdown-item" href="/items/electronics">Accessories</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <div className="dropdown" onMouseOver={() => {
-                            // $('.dropdown-toggle').dropdown('toggle')
-                        }}>
-                            <a className="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                Fashion
+                        </li>
+                        <li className="nav-item">
+                            <div className="dropdown" onMouseOver={() => {
+                                // $('.dropdown-toggle').dropdown('toggle')
+                            }}>
+                                <a className="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    Fashion
   </a>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">Men</a>
-                                <a className="dropdown-item" href="#">Women</a>
-                                <a className="dropdown-item" href="#">Boys</a>
-                                <a className="dropdown-item" href="#">Girls</a>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" href="/items/fashion">Men</a>
+                                    <a className="dropdown-item" href="/items/fashion">Women</a>
+                                    <a className="dropdown-item" href="/items/fashion">Boys</a>
+                                    <a className="dropdown-item" href="/items/fashion">Girls</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <div className="dropdown" onMouseOver={() => {
-                            // $('.dropdown-toggle').dropdown('toggle')
-                        }}>
-                            <a className="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                Mobile
+                        </li>
+                        <li className="nav-item">
+                            <div className="dropdown" onMouseOver={() => {
+                                // $('.dropdown-toggle').dropdown('toggle')
+                            }}>
+                                <a className="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    Mobile
   </a>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">Apple</a>
-                                <a className="dropdown-item" href="#">Android</a>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" href="/items/mobile">Apple</a>
+                                    <a className="dropdown-item" href="/items/mobile">Android</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <div className="dropdown" onMouseOver={() => {
-                            // $('.dropdown-toggle').dropdown('toggle')
-                        }}>
-                            <a className="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                Home and Garden
+                        </li>
+                        <li className="nav-item">
+                            <div className="dropdown" onMouseOver={() => {
+                                // $('.dropdown-toggle').dropdown('toggle')
+                            }}>
+                                <a className="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    Home and Garden
   </a>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">Tools and Garden</a>
-                                <a className="dropdown-item" href="#">Kitchen and Dining</a>
-                                <a className="dropdown-item" href="#">Home decor</a>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a className="dropdown-item" href="#">Tools and Garden</a>
+                                    <a className="dropdown-item" href="#">Kitchen and Dining</a>
+                                    <a className="dropdown-item" href="#">Home decor</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    {/* <li className="nav-item">
+                        </li>
+                        {/* <li className="nav-item">
                         <div className="dropdown" onMouseOver={() => {
                             // $('.dropdown-toggle').dropdown('toggle')
                         }}>
@@ -146,7 +131,43 @@ const Header = (props) => {
                         </div>
                     </li> */}
 
-                </ul>
+                    </ul>
+                    <ul className="navbar-nav ml-auto">
+                        <div className="form-group row">
+
+                            <form className="form-inline" onSubmit={(e) => {
+                                if (search == "") {
+                                    history.push('/items')
+                                } else {
+                                    history.push('/search/' + search + "/" + category)
+                                }
+                            }}>
+                                <input className="form-control form-control-sm ml-3" type="text" placeholder="Search"
+                                    aria-label="Search" value={search} onChange={(e) => setsearch(e.target.value)} />
+                                <div className="form-group">
+                                    <label htmlFor=""></label>
+                                    <select className="form-control" name="" id="" onChange={(e) =>
+                                        handleCategoryChange(e)
+                                    } >
+                                        <option value="all">All</option>
+                                        <option value="electronics">Electronics</option>
+                                        <option value="mobile">Mobile</option>
+                                        <option value="fashion">Fashion</option>
+                                    </select>
+                                </div>
+                                <button className="btn btn-large btn-info search">
+                                    <i className="fas fa-search" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </ul>
+
+                </div>
+
+
+            </Nav>
+            <NavSlim2 className="navbar navbar-expand-lg ">
+
 
 
             </NavSlim2>
@@ -184,13 +205,14 @@ li a:hover{
 
 input[type=text] {
   border: 1px solid #4dd0e1;
-  width:695px;
-  font-size:25px;
+  width:395px;
+  font-size:18px;
   margin:7px;
 }
 
  .search{
-    font-size:20px;
+    font-size:15px;
+    margin-left:4px;
 }
 
 

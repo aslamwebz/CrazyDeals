@@ -68,8 +68,9 @@ span.priceNow{
 
 `
 
-const Product = ({ product }) => {
+const Product = (props) => {
 
+    const product = props.product
     // const [images, setImages] = useState([]);
     // const [product, setProduct] = useState([]);
 
@@ -95,7 +96,7 @@ const Product = ({ product }) => {
     // }
 
     // const image = `images/electronics/${product.id}/${product.image}`
-    const img = `images/${product.image}`
+    const img = `${document.location.origin}/images/${product.image}`
 
     const data = () => {
         return <div className="product">
@@ -117,11 +118,14 @@ const Product = ({ product }) => {
         </div >
     }
 
-    const itemPath = `item/${product.category}/${product.id}`
+    const itemPath = () => {
+        const path = `${document.location.origin}/item/${product.category}/${product.id}`
+        return <a href={path} >{data()}</a>
+    }
 
     return (
         <Div>
-            <Link to={itemPath} >{data()}</Link>
+            {itemPath()}
         </Div>
     )
 }

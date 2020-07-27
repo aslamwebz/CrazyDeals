@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const Sidebar = () => {
 
-
     const history = useHistory()
     const handleClick = (e, comp) => {
         e.preventDefault()

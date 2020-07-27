@@ -3,7 +3,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 import app from '../base';
 import { AuthContext } from './Auth';
 
-const Login = ({ history }) => {
+const Login = ({ history, location }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

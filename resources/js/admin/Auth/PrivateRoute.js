@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from './Auth'
+import * as firebase from 'firebase'
 
 //? Wrapper around regular route
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
+
     const { currentUser } = useContext(AuthContext);
+    const db = firebase.firestore()
+    if (currentUser) {
+        db.collection('users').doc(currentUser.uid).get().then(doc => {
+            console.log(doc.data().profilepic)
+        })
+    }
     return (
         <Route
             //? passing rest of the props
@@ -18,8 +26,6 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
                         <Redirect to={"/login"} />
                     )
             } />
-
-
     )
 }
 

@@ -234,7 +234,7 @@ const MobileForm = (props) => {
                     <div className="container py-5 py-lg-5 pt-lg-5">
                         <div className="row justify-content-center">
                             <div className="col-lg-12 col-md-12">
-                                <div className="card bg-secondary border-0 mb-0">
+                                <div className="card border-0 mb-0">
                                     <div className="card-header bg-transparent pb-5">
                                         <div className="text-muted text-center mt-2 mb-3"><small>Add Mobiles</small></div>
 

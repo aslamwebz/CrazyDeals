@@ -1,23 +1,32 @@
 import React, { useState, useCallback, useContext } from 'react'
 import { withRouter } from "react-router-dom";
 import app from '../base';
+import * as firebase from 'firebase'
+import 'firebase/auth'
 
 const Register = ({ history }) => {
-
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const db = firebase.firestore()
+
     const handleSignUp = useCallback(async event => {
         const { em, ps } = event.target.elements
-        console.log(em, ps)
         event.preventDefault();
         //? try to register or present the error
         try {
             await app
                 .auth()
-                .createUserWithEmailAndPassword(em.value, ps.value);
-            history.push("/admin")
+                .createUserWithEmailAndPassword(em.value, ps.value)
+                .then(u => {
+
+                    return db.collection('users').doc(u.user.uid).set({
+                        profilepic: "asdf"
+                    })
+
+
+                })
         } catch (err) {
             alert(err)
         }

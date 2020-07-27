@@ -229,6 +229,7 @@ const Header = () => {
                                 <div className="dropdown-divider"></div>
                                 <button className="dropdown-item" type="button" onClick={() => {
                                     app.auth().signOut()
+                                    localStorage.setItem('user', "null")
                                 }
                                 }>
                                     <i className="ni ni-user-run"></i>

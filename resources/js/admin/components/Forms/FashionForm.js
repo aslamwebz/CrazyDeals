@@ -198,7 +198,7 @@ const FashionForm = (props) => {
                     <div className="container py-5 py-lg-5 pt-lg-5">
                         <div className="row justify-content-center">
                             <div className="col-lg-12 col-md-12">
-                                <div className="card bg-secondary mb-0">
+                                <div className="card  mb-0">
                                     <div className="card-header bg-transparent ">
                                         <div className="text-muted text-center mt-2 mb-3"><small>Add Items</small></div>
 

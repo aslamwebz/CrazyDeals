@@ -3,7 +3,7 @@ import Header from '../components/components/Header'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import Checkout from './Checkout'
-import { fetchCart, increaseQuantity, decreaseQuantity } from '../actions/cartActions'
+import { fetchCart, increaseQuantity, decreaseQuantity, removeFromCart } from '../actions/cartActions'
 import { connect } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid';
 const Div = styled.div`
@@ -77,35 +77,35 @@ const Cart = (props) => {
 
     // }
 
-    const delItem = (delid) => {
+    // const delItem = (delid) => {
 
 
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                const itemData = items.filter(item => {
-                    return item.id !== delid
-                })
+    //     Swal.fire({
+    //         title: 'Are you sure?',
+    //         text: "You won't be able to revert this!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes, delete it!'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             const itemData = items.filter(item => {
+    //                 return item.id !== delid
+    //             })
 
-                setItems(itemData)
+    //             setItems(itemData)
 
-                // Swal.fire(
-                //     'Deleted!',
-                //     'Your file has been deleted.',
-                //     'success'
-                // )
-            }
-        })
+    //             // Swal.fire(
+    //             //     'Deleted!',
+    //             //     'Your file has been deleted.',
+    //             //     'success'
+    //             // )
+    //         }
+    //     })
 
 
-    }
+    // }
 
     const quantityController = (e, name, quantity, available) => {
 
@@ -201,7 +201,7 @@ const Cart = (props) => {
                                     <td>{item.price * item.quantity}</td>
                                     <td>
                                         <span className="d">
-                                            <button className="btn btn-danger" onClick={() => delItem(item.id)}>X</button>
+                                            <button className="btn btn-danger" onClick={() => props.removeFromCart(item.name)}>X</button>
                                         </span>
                                     </td>
                                 </tr>)
@@ -271,4 +271,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { fetchCart, increaseQuantity, decreaseQuantity })(Cart)
+export default connect(mapStateToProps, { fetchCart, increaseQuantity, decreaseQuantity, removeFromCart })(Cart)

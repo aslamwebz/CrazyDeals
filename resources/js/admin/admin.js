@@ -53,11 +53,11 @@ const admin = (props) => {
             return <ElectronicsForm operation={operation} id={id} />
         }
 
-        if (props.match.path === "/admin/electronics/createElectronics") {
+        if (props.location.pathname === "/admin/electronics/createElectronics") {
             return <ElectronicsForm operation={"createElectronics"} id={1} />
         }
 
-        if (props.match.path === "/admin/fashion/createFashion") {
+        if (props.location.pathname === "/admin/fashion/createFashion") {
             return <FashionForm operation={"createFashion"} id={1} />
         }
 
@@ -69,7 +69,7 @@ const admin = (props) => {
             return <FashionForm operation={operation} id={id} />
         }
 
-        if (props.match.path === "/admin/mobile/createMobile") {
+        if (props.location.pathname === "/admin/mobile/createMobile") {
             return <MobileForm operation={"createMobile"} id={1} />
         }
         if (props.match.params.operation === "viewMobile") {
@@ -80,27 +80,27 @@ const admin = (props) => {
             return <MobileForm operation={operation} id={id} />
         }
 
-        if (props.match.path === "/admin") {
+        if (props.location.pathname === "/admin") {
             return <Content />
         }
 
-        if (props.match.path === "/admin/electronics") {
+        if (props.location.pathname === "/admin/electronics") {
             return <Electronics />
         }
 
-        if (props.match.path === "/admin/fashion") {
+        if (props.location.pathname === "/admin/fashion") {
             return <Fashion />
         }
 
-        if (props.match.path === "/admin/mobile") {
+        if (props.location.pathname === "/admin/mobile") {
             return <Mobile />
         }
 
-        if (props.match.path === "/admin/profile") {
+        if (props.location.pathname === "/admin/profile") {
             return <Profile />
         }
 
-        if (props.match.path === "/admin/featured") {
+        if (props.location.pathname === "/admin/featured") {
             return <Featured />
         }
 
@@ -109,18 +109,18 @@ const admin = (props) => {
     const createNewHandler = () => {
         let type = ""
         let url = ""
-        if (props.match.path === "/admin/electronics") {
+        if (props.location.pathname === "/admin/electronics") {
             type = "createElectronics"
         }
-        if (props.match.path === "/admin/fashion") {
+        if (props.location.pathname === "/admin/fashion") {
             type = "createFashion"
         }
 
-        if (props.match.path === "/admin/mobile") {
+        if (props.location.pathname === "/admin/mobile") {
             type = "createMobile"
         }
 
-        url = props.match.path + "/" + type
+        url = props.location.pathname + "/" + type
         history.push(url)
     }
 

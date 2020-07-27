@@ -101,13 +101,11 @@ export const quantityDecrease = async (name) => {
     localStorage.setItem('cart', JSON.stringify(newCart))
 }
 
-export const removeFromCart = async (id) => {
-    const newCart = await cart.filter(it => {
-        return it.id !== id
+export const removeItemFromCart = async (name) => {
+    let cart = await fetchCart()
+    const newCart = cart.filter(item => {
+        return item.name !== name
     })
-
     localStorage.setItem('cart', JSON.stringify(newCart))
 }
-
-
 

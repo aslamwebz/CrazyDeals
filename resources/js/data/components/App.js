@@ -25,7 +25,6 @@ import { useLocation } from 'react-router-dom';
 
 function HeaderView() {
     let location = useLocation();
-    console.log(location.pathname);
     return <span>Path : {location.pathname}</span>
 }
 
@@ -41,31 +40,33 @@ const App = () => {
                     <Route path="/item/:category/:id" component={Item} />
                     <Route path="/itemlist" exact component={ItemList} />
 
-                    <Route path="/allitems" exact component={General} />
+                    <Route path="/items" exact component={General} />
+                    <Route path="/items/:category" exact component={General} />
+
 
                     <Route path="/cart" exact component={Cart} />
-                    <Route path="/search/:query" exact component={Search} />
+                    <Route path="/search/:query/:category" exact component={Search} />
 
-                    <PrivateRoute path="/admin" exact component={admin} />
+                    <PrivateRoute path="/admin" component={admin} />
                     {/* <Route path="/admin" exact component={admin} /> */}
 
-                    <PrivateRoute path="/admin/electronics" exact component={admin} />
+                    <PrivateRoute path="/admin/electronics" component={admin} />
                     <PrivateRoute path="/admin/electronics/createElectronics" component={admin} />
                     <PrivateRoute path="/admin/electronics/:operation/:id" component={admin} />
 
 
-                    <PrivateRoute path="/admin/fashion" exact component={admin} />
+                    <PrivateRoute path="/admin/fashion" component={admin} />
                     <PrivateRoute path="/admin/fashion/createFashion" component={admin} />
                     <PrivateRoute path="/admin/fashion/:operation/:id" component={admin} />
 
 
-                    <PrivateRoute path="/admin/mobile" exact component={admin} />
+                    <PrivateRoute path="/admin/mobile" component={admin} />
                     <PrivateRoute path="/admin/mobile/createMobile" component={admin} />
                     <PrivateRoute path="/admin/mobile/:operation/:id" component={admin} />
 
 
-                    <PrivateRoute path="/admin/profile" exact component={admin} />
-                    <PrivateRoute path="/admin/featured" exact component={admin} />
+                    <PrivateRoute path="/admin/profile" component={admin} />
+                    <PrivateRoute path="/admin/featured" component={admin} />
 
 
                     {/* <Route path="/admin/electronics/:operation/:id" component={AdminRoute} /> */}
