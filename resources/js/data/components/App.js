@@ -42,6 +42,7 @@ const App = () => {
 
                     <Route path="/items" exact component={General} />
                     <Route path="/items/:category" exact component={General} />
+                    <Route path="/items/:category/:subcategory" exact component={General} />
 
 
                     <Route path="/cart" exact component={Cart} />

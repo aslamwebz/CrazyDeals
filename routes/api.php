@@ -49,6 +49,7 @@ Route::put('mobile/{id}', 'MobileController@update');
 Route::delete('mobile/{id}', 'MobileController@destroy');
 
 Route::get('allitems', 'ItemController@index');
+Route::get('all/{category}/{subcategory}', 'ItemController@getSubCategory');
 Route::post('searchByCatogory', 'ItemController@filterCat');
 
 Route::get('getFeaturedElectronics', 'FeaturedController@getFeaturedElectronics');

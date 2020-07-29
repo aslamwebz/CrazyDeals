@@ -13,15 +13,15 @@ const FeaturedThree = () => {
             })
     }, [])
     return (
-        <Div >
-            <div className="row">
-                <div className="col-md-12 text-center">
-                    <h2 id="title">Featured Fashion Deals</h2>
-                </div>
+        <Div>
+            <div className="col-md-12 text-center">
+                <h2 id="title">Featured Fashion Deals</h2>
             </div>
-            <div className="card-group">
-                {products.map(product => { return <Product key={product.id} product={product} /> }
-                )}
+            <div className="d-flex justify-content-center">
+                <div className="card-group">
+                    {products.map(product => { return <Product key={product.id} product={product} /> }
+                    )}
+                </div>
             </div>
         </Div>
     )

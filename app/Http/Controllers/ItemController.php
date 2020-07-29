@@ -21,6 +21,27 @@ class ItemController extends Controller
        ]);
     }
 
+    public function getSubCategory($category, $subcategory)
+    {
+        $data = [];
+        if($category === "electronics"){
+            $data = Electronics::where('sub_category',$subcategory)->paginate(10);
+        }
+
+        if($category === "fashion"){
+            $data = Fashion::where('sub_category',$subcategory)->paginate(10);
+        }
+
+        if($category === "mobile"){
+            $data = Mobile::where('sub_category',$subcategory)->paginate(10);
+        }
+
+        return response()->json([
+            'data' => $data,
+        ]);
+
+    }
+
     public function filterCat(Request $request){
         $cat = $request->get('cat');
         $fashion =$cat['fashion'];

@@ -54,9 +54,9 @@ const Header = (props) => {
                                     Electronics
   </a>
                                 <div className="dropdown-menu  " aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="/items/electronics">Computers</a>
-                                    <a className="dropdown-item" href="/items/electronics">Laptops</a>
-                                    <a className="dropdown-item" href="/items/electronics">Accessories</a>
+                                    <a className="dropdown-item" href="/items/electronics/computers">Computers</a>
+                                    <a className="dropdown-item" href="/items/electronics/laptop">Laptops</a>
+                                    <a className="dropdown-item" href="/items/electronics/accessories">Accessories</a>
                                 </div>
                             </div>
                         </li>
@@ -68,10 +68,10 @@ const Header = (props) => {
                                     Fashion
   </a>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="/items/fashion">Men</a>
-                                    <a className="dropdown-item" href="/items/fashion">Women</a>
-                                    <a className="dropdown-item" href="/items/fashion">Boys</a>
-                                    <a className="dropdown-item" href="/items/fashion">Girls</a>
+                                    <a className="dropdown-item" href="/items/fashion/men">Men</a>
+                                    <a className="dropdown-item" href="/items/fashion/women">Women</a>
+                                    <a className="dropdown-item" href="/items/fashion/boys">Boys</a>
+                                    <a className="dropdown-item" href="/items/fashion/girls">Girls</a>
                                 </div>
                             </div>
                         </li>
@@ -83,8 +83,8 @@ const Header = (props) => {
                                     Mobile
   </a>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a className="dropdown-item" href="/items/mobile">Apple</a>
-                                    <a className="dropdown-item" href="/items/mobile">Android</a>
+                                    <a className="dropdown-item" href="/items/mobile/apple">Apple</a>
+                                    <a className="dropdown-item" href="/items/mobile/android">Android</a>
                                 </div>
                             </div>
                         </li>

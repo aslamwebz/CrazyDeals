@@ -6,7 +6,7 @@ import Product from '../Product/Product'
 import styled from 'styled-components'
 import uuid from 'react-uuid'
 import { Link } from 'react-router-dom'
-import Spinner from 'react-spinkit'
+
 const General = (props) => {
 
 
@@ -15,12 +15,10 @@ const General = (props) => {
     const [pageCount, setPageCount] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
     const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(false)
     const category = props.match.params.category ? props.match.params.category : "all"
     const subcategory = props.match.params.subcategory ? props.match.params.subcategory : "all"
 
     useEffect(() => {
-
         getData()
         getProducts()
     }, [])
@@ -35,7 +33,6 @@ const General = (props) => {
     }, [state])
 
     const getData = async () => {
-        setLoading(true)
         if (subcategory === "all") {
             if (category === "all") {
                 await Axios.get('api/allitems')
@@ -65,20 +62,9 @@ const General = (props) => {
                         setCurrentPage(res.data.fashions.current_page)
                     })
             }
-        } else if (subcategory !== "") {
-            await Axios.get("/api/all/" + category + "/" + subcategory)
-                .then(res => {
-                    setstate(res.data.data.data)
-                    setPageCount(res.data.last_page)
-                    setCurrentPage(res.data.current_page)
-                })
         }
-        setLoading(false)
-
     }
     const paginateHandle = async (e, operation) => {
-        setLoading(true)
-
         e.preventDefault()
         let pageChange = 1
         if (operation === "prev") {
@@ -169,8 +155,6 @@ const General = (props) => {
                 }
             }
         }
-        setLoading(false)
-
     }
 
     const pagination = () => {
@@ -191,8 +175,6 @@ const General = (props) => {
     }
 
     const getProducts = () => {
-        setLoading(true)
-
         let items = []
 
         if (state.length >= 1) {
@@ -204,8 +186,6 @@ const General = (props) => {
         }
 
         setProducts(items)
-        setLoading(false)
-
     }
 
     const getPostData = async (page) => {
@@ -250,44 +230,6 @@ const General = (props) => {
         }
 
     }
-    const filterProducts = (start, end) => {
-        if (start !== "" || end !== "") {
-            let items = products
-
-            if (state.length >= 1) {
-                items = state.map(product => {
-                    if (product.price < end && product.price > start) {
-                        return <Product key={uuid()} product={product} />
-                    }
-                })
-            } else {
-                items = "No products have found, please change the search queries"
-            }
-
-            setProducts(items)
-        } else {
-            console.log("hi")
-            let items = []
-
-            if (state.length >= 1) {
-                items = state.map(product => {
-                    return <Product key={uuid()} product={product} />
-                })
-            } else {
-                items = "No products have found, please change the search queries"
-            }
-
-            setProducts(items)
-        }
-    }
-
-    if (loading) {
-        return (
-            <DIV2>
-                <Spinner name="ball-scale-ripple-multiple" color="steelblue" />
-            </DIV2>
-        )
-    }
 
 
     return (
@@ -296,7 +238,7 @@ const General = (props) => {
             <div id="wrapper">
                 <div className="row">
                     <div className="col-md-2">
-                        <Sidebar filterProducts={filterProducts} />
+                        <Sidebar />
                     </div>
                     <div className="col-md-10">
                         <div className="row">
@@ -343,13 +285,6 @@ const Div = styled.div`
                                         .cardgroup{
                                         margin:20px;
                                 }
-                                `
-
-const DIV2 = styled.div`
-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center
                                 `
 
 export default General
