@@ -3,6 +3,7 @@ import Main from './Main'
 import Sidebar from './Sidebar'
 import Header from './Header'
 import { useHistory } from "react-router-dom";
+import * as firebase from 'firebase'
 
 
 
@@ -37,6 +38,7 @@ const Div = styled.div`
 
 
 const admin = (props) => {
+
     const history = useHistory()
     // console.log(props)
     const { currentUser } = useContext(AuthContext);

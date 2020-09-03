@@ -105,7 +105,7 @@ button:focus {
     }
 }`
 
-const Checkout = () => {
+const Checkout = ({ total, checkOut }) => {
     return (
         <Div>
             <div className="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
@@ -140,8 +140,8 @@ const Checkout = () => {
                                 <div className="col-sm-5 text-sm-center justify-content-center pt-4 pb-4"> <small className="text-sm text-muted">Order number</small>
                                     <h5 className="mb-5">12345678</h5> <small className="text-sm text-muted">Payment amount</small>
                                     <div className="row px-3 justify-content-sm-center">
-                                        <h2 className=""><span className="text-md font-weight-bold mr-2">$</span><span className="text-danger">59.49</span></h2>
-                                    </div> <button type="submit" className="btn btn-red text-center mt-4">PAY</button>
+                                        <h2 className=""><span className="text-md font-weight-bold mr-2">$</span><span className="text-danger">{total}</span></h2>
+                                    </div> <button type="submit" className="btn btn-red text-center mt-4" onClick={checkOut}>PAY</button>
                                 </div>
                             </div>
                         </div>

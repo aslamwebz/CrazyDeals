@@ -35,23 +35,10 @@ const Login = ({ history, location }) => {
             <div className="container py-5 py-lg-5 pt-lg-5">
                 <div className="row justify-content-center">
                     <div className="col-lg-5 col-md-7">
-                        <div className="card bg-secondary border-0 mb-0">
-                            <div className="card-header bg-transparent pb-5">
-                                <div className="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-                                <div className="btn-wrapper text-center">
-                                    <a href="#" className="btn btn-neutral btn-icon">
-                                        <span className="btn-inner--icon"><img src="../assets/img/icons/common/github.svg" /></span>
-                                        <span className="btn-inner--text">Github</span>
-                                    </a>
-                                    <a href="#" className="btn btn-neutral btn-icon">
-                                        <span className="btn-inner--icon"><img src="../assets/img/icons/common/google.svg" /></span>
-                                        <span className="btn-inner--text">Google</span>
-                                    </a>
-                                </div>
-                            </div>
+                        <div className="card  border-0 mb-0">
                             <div className="card-body px-lg-5 py-lg-5">
                                 <div className="text-center text-muted mb-4">
-                                    <small>Or sign in with credentials</small>
+                                    <small>Log in with credentials</small>
                                 </div>
                                 <form role="form" onSubmit={handleSignIn}>
                                     <div className="form-group mb-3">

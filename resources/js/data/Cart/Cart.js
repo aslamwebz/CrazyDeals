@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/components/Header'
+import Header from '../main/components/Header'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import Checkout from './Checkout'
-import { fetchCart, increaseQuantity, decreaseQuantity, removeFromCart } from '../actions/cartActions'
+import { fetchCart, increaseQuantity, decreaseQuantity, removeFromCart, checkout } from '../actions/cartActions'
 import { connect } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid';
 const Div = styled.div`
@@ -146,6 +146,7 @@ const Cart = (props) => {
                 title: 'Oops...',
                 text: 'Please add something to Check Out!',
             })
+
         } else {
             Swal.fire({
                 title: '<strong>HTML <u>example</u></strong>',
@@ -164,7 +165,42 @@ const Cart = (props) => {
                     '<i className="fa fa-thumbs-down"></i>',
                 cancelButtonAriaLabel: 'Thumbs down'
             })
+
+            props.checkout()
         }
+
+    }
+
+    const renderItems = () => {
+        if (items.length !== 0) {
+            return items.map(item => {
+                return (<tr key={uuidv4()}>
+                    <th scope="row">{item.id}</th>
+                    <td>{item.name}</td>
+                    <td>{item.price}</td>
+                    <td>
+                        <span className="d">
+                            <button className="btn btn-info" onClick={e => quantityController("+", item.name, item.quantity, item.available)}>+</button>
+                            <input value={item.quantity} readOnly />
+                            <button className="btn btn-info" onClick={e => quantityController("-", item.name, item.quantity, item.available)}>-</button>
+                        </span>
+                    </td>
+                    <td>{item.available}</td>
+                    <td>{item.price * item.quantity}</td>
+                    <td>
+                        <span className="d">
+                            <button className="btn btn-danger" onClick={() => props.removeFromCart(item.name)}>X</button>
+                        </span>
+                    </td>
+                </tr>)
+
+            })
+        } else {
+            return (<tr>
+                <td>Cart is empty, Please add some items</td>
+            </tr>)
+        }
+
     }
 
     return (
@@ -185,28 +221,7 @@ const Cart = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {items.map(item => {
-                                return (<tr key={uuidv4()}>
-                                    <th scope="row">{item.id}</th>
-                                    <td>{item.name}</td>
-                                    <td>{item.price}</td>
-                                    <td>
-                                        <span className="d">
-                                            <button className="btn btn-info" onClick={e => quantityController("+", item.name, item.quantity, item.available)}>+</button>
-                                            <input value={item.quantity} readOnly />
-                                            <button className="btn btn-info" onClick={e => quantityController("-", item.name, item.quantity, item.available)}>-</button>
-                                        </span>
-                                    </td>
-                                    <td>{item.available}</td>
-                                    <td>{item.price * item.quantity}</td>
-                                    <td>
-                                        <span className="d">
-                                            <button className="btn btn-danger" onClick={() => props.removeFromCart(item.name)}>X</button>
-                                        </span>
-                                    </td>
-                                </tr>)
-
-                            })}
+                            {renderItems()}
                         </tbody>
                     </table>
                 </div>
@@ -252,7 +267,7 @@ const Cart = (props) => {
                             </button>
                         </div>
                         <div className="modal-body">q
-                            <Checkout />
+                            <Checkout total={subTotal} checkOut={checkOut} />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -271,4 +286,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { fetchCart, increaseQuantity, decreaseQuantity, removeFromCart })(Cart)
+export default connect(mapStateToProps, { fetchCart, increaseQuantity, decreaseQuantity, removeFromCart, checkout })(Cart)

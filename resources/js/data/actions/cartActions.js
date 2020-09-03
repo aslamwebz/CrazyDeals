@@ -1,4 +1,4 @@
-import { FETCH_CART, ADD_TO_CART, QUANTITY_INCREASE, QUANTITY_DECREASE, REMOVE_FROM_CART, ITEM_COUNT } from "./types"
+import { FETCH_CART, ADD_TO_CART, QUANTITY_INCREASE, QUANTITY_DECREASE, REMOVE_FROM_CART, ITEM_COUNT, CHECKOUT } from "./types"
 import { addItemToCart, quantityIncrease, quantityDecrease, removeItemFromCart } from "./cart"
 
 
@@ -82,5 +82,15 @@ export const itemCount = () => dispatch => {
     dispatch({
         type: ITEM_COUNT,
         payload: count
+    })
+}
+
+export const checkout = () => dispatch => {
+    const cart = []
+    localStorage.setItem('cart', JSON.stringify(cart))
+
+    dispatch({
+        type: CHECKOUT,
+        payload: cart
     })
 }

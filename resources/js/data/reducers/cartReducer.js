@@ -1,4 +1,4 @@
-import { FETCH_CART, ADD_TO_CART, QUANTITY_DECREASE, QUANTITY_INCREASE, ITEM_COUNT, REMOVE_FROM_CART } from '../actions/types'
+import { FETCH_CART, ADD_TO_CART, QUANTITY_DECREASE, QUANTITY_INCREASE, ITEM_COUNT, REMOVE_FROM_CART, CHECKOUT } from '../actions/types'
 
 const initialState = {
     cart: [],
@@ -32,6 +32,11 @@ export default function (state = initialState, action) {
                 cart: action.payload
             }
         case ITEM_COUNT:
+            return {
+                ...state,
+                count: action.payload
+            }
+        case CHECKOUT:
             return {
                 ...state,
                 count: action.payload
