@@ -11,10 +11,10 @@
     
     <!-- Scripts -->
     <script src="https:code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ secure_asset('js/app.js') }}" defer></script>
     @if (\Request::is('admin') || \Request::is('admin/*'))  
-    <link href="{{ asset('css/argon.css?v=1.2.0') }}"  rel="stylesheet">
-    <link href="{{ asset('assets/vendor/nucleo/css/nucleo.css') }}"  rel="stylesheet">
+    <link href="{{ secure_asset('css/argon.css?v=1.2.0') }}"  rel="stylesheet">
+    <link href="{{ secure_asset('assets/vendor/nucleo/css/nucleo.css') }}"  rel="stylesheet">
     @endif
     
 

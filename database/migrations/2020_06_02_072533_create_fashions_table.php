@@ -21,8 +21,8 @@ class CreateFashionsTable extends Migration
             $table->integer('sold');
             $table->integer('price');
             $table->integer('discount');
-            $table->json('colors');
-            $table->json('sizes');
+            $table->text('colors');
+            $table->text('sizes');
             $table->string('featured');
             $table->string('shipping');
             $table->string('condition');
