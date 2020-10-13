@@ -1,5 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from './CheckoutForm';
+
+const stripePromise = loadStripe("pk_test_9KuFtUOrr7GHBdNyoJc1PyAs");
+
 
 const Div = styled.div`
 body {
@@ -106,6 +112,9 @@ button:focus {
 }`
 
 const Checkout = ({ total, checkOut }) => {
+
+
+
     return (
         <Div>
             <div className="container-fluid px-1 px-md-2 px-lg-4 py-5 mx-auto">
@@ -116,7 +125,7 @@ const Checkout = ({ total, checkOut }) => {
                                 <h3 className="mb-4">Checkout</h3>
                             </div>
                             <div className="row">
-                                <div className="col-sm-7 border-line pb-3">
+                                {/* <div className="col-sm-7 border-line pb-3">
                                     <div className="form-group">
                                         <p className="text-muted text-sm mb-0">Name on the card</p> <input type="text" name="name" placeholder="Name" size="15" />
                                     </div>
@@ -136,13 +145,18 @@ const Checkout = ({ total, checkOut }) => {
                                     <div className="form-group mb-0">
                                         <div className="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" className="custom-control-input" checked readOnly /> <label htmlFor="chk1" className="custom-control-label text-muted text-sm">save my card for future payment</label> </div>
                                     </div>
-                                </div>
-                                <div className="col-sm-5 text-sm-center justify-content-center pt-4 pb-4"> <small className="text-sm text-muted">Order number</small>
+                                </div> */}
+
+                                <Elements stripe={stripePromise}>
+                                    <CheckoutForm total={total} />
+                                </Elements>
+
+                                {/* <div className="col-sm-5 text-sm-center justify-content-center pt-4 pb-4"> <small className="text-sm text-muted">Order number</small>
                                     <h5 className="mb-5">12345678</h5> <small className="text-sm text-muted">Payment amount</small>
                                     <div className="row px-3 justify-content-sm-center">
                                         <h2 className=""><span className="text-md font-weight-bold mr-2">$</span><span className="text-danger">{total}</span></h2>
                                     </div> <button type="submit" className="btn btn-red text-center mt-4" onClick={checkOut}>PAY</button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

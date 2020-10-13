@@ -86,6 +86,8 @@ export const itemCount = () => dispatch => {
 }
 
 export const checkout = () => dispatch => {
+    const olderCart = localStorage.getItem('cart')
+    console.log(olderCart);
     const cart = []
     localStorage.setItem('cart', JSON.stringify(cart))
 

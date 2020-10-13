@@ -14,8 +14,6 @@ import Register from '../../admin/Auth/Register'
 import PrivateRoute from '../../admin/Auth/PrivateRoute'
 import NotFoundPage from './notFound/NotFoundPage'
 
-
-
 import Search from './Search'
 
 import { useLocation } from 'react-router-dom';

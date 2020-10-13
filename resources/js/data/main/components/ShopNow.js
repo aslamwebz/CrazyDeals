@@ -10,7 +10,7 @@ const ShopNow = () => {
                         <img className="img-fluid" src="images/a1.jpg" alt="" />
                         <div className="overlay">
                             <h5>women's fashion</h5>
-                            <a className="info" href="women.html">Shop Now</a>
+                            <a className="info" href="/items/fashion">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@ const ShopNow = () => {
                         <img className="img-fluid" src="images/a2.jpg" alt="" />
                         <div className="overlay">
                             <h5>men's fashion</h5>
-                            <a className="info" href="men.html">Shop Now</a>
+                            <a className="info" href="/items/fashion">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ const ShopNow = () => {
                         <img className="img-fluid" src="images/a3.jpg" alt="" />
                         <div className="overlay">
                             <h5>kid's fashion</h5>
-                            <a className="info" href="girls.html">Shop Now</a>
+                            <a className="info" href="/items/fashion">Shop Now</a>
                         </div>
                     </div>
                 </div>

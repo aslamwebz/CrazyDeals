@@ -117,11 +117,11 @@ const Product = ({ product }) => {
         </div >
     }
 
-    const itemPath = `item/${product.category}/${product.id}`
+    const itemPath = `/item/${product.category}/${product.id}`
 
     return (
         <Div>
-            <Link to={itemPath} >{data()}</Link>
+            <a href={itemPath} >{data()}</a>
         </Div>
     )
 }

@@ -5,24 +5,35 @@ import Axios from 'axios'
 
 const FeaturedOne = () => {
     const [products, setproducts] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        Axios.get('/api/getFeaturedElectronics')
-            .then(res => {
-                setproducts(res.data.data)
-            })
+        setLoading(true)
+        const getData = async () => {
+            await Axios.get('/api/getFeaturedElectronics')
+                .then(res => {
+                    setproducts(res.data.data)
+                })
+        }
+        getData();
+        setLoading(false)
+
     }, [])
     return (
         <Div>
-            <div className="col-md-12 text-center">
-                <h2 id="title">Featured Tech Deals</h2>
-            </div>
-            <div className="d-flex justify-content-center">
-                <div className="card-group">
-                    {products.map(product => { return <Product key={product.id} product={product} /> }
-                    )}
+            {loading ? 'loading' :
+                <div>
+                    <div className="col-md-12 text-center">
+                        <h2 id="title">Featured Tech Deals</h2>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <div className="card-group">
+                            {products.map(product => { return <Product key={product.id} product={product} /> }
+                            )}
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </Div>
     )
 }

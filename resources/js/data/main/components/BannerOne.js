@@ -19,7 +19,7 @@ const BannerOne = () => {
                                     <div className="carousel-caption d-none d-md-block">
                                         <h3>The Biggest <span>Sale</span></h3>
                                         <p>Special for today</p>
-                                        <a className="hvr-outline-out button2" href="mens.html">Shop Now </a>
+                                        <a className="hvr-outline-out button2" href="/items/fashion">Shop Now </a>
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@ const BannerOne = () => {
                                     <div className="carousel-caption">
                                         <h3>Summer <span>Collection</span></h3>
                                         <p>New Arrivals On Sale</p>
-                                        <a className="hvr-outline-out button2" href="mens.html">Shop Now </a>
+                                        <a className="hvr-outline-out button2" href="/items/fashion">Shop Now </a>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@ const BannerOne = () => {
                                     <div className="carousel-caption">
                                         <h3>The Biggest <span>Sale</span></h3>
                                         <p>Special for today</p>
-                                        <a className="hvr-outline-out button2" href="mens.html">Shop Now </a>
+                                        <a className="hvr-outline-out button2" href="/items/fashion">Shop Now </a>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@ const BannerOne = () => {
                                     <div className="carousel-caption">
                                         <h3>Summer <span>Collection</span></h3>
                                         <p>New Arrivals On Sale</p>
-                                        <a className="hvr-outline-out button2" href="mens.html">Shop Now </a>
+                                        <a className="hvr-outline-out button2" href="/items/fashion">Shop Now </a>
                                     </div>
                                 </div>
                             </div>

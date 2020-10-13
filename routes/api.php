@@ -65,6 +65,9 @@ Route::put('/cart/{id}','CartController@update');
 Route::get('/search/{query}/{category}', 'SearchController@search');
 Route::post('/search', 'SearchController@searchByCatogory');
 
+
+Route::post('/payment', 'PaymentController@payment');
+
 Route::middleware('/auth:api')->group(function(){
    Route::get('/user/{userid}/detail', "UserController@show"); 
 });
