@@ -1,8 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Axios from 'axios'
-import { Link } from 'react-router-dom'
 
 const Div = styled.div`
 .card{
