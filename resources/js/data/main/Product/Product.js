@@ -1,8 +1,7 @@
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Axios from 'axios'
-import { Link } from 'react-router-dom'
+
 
 const Div = styled.div`
 .card{
@@ -96,7 +95,7 @@ const Product = (props) => {
     // }
 
     // const image = `images/electronics/${product.id}/${product.image}`
-    const img = `${document.location.origin}/images/${product.image}`
+    const img = `images/${product.image}`
 
     const data = () => {
         return <div className="product">
