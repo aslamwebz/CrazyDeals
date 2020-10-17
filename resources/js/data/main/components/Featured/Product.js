@@ -95,7 +95,7 @@ const Product = ({ product }) => {
     // }
 
     // const image = `images/electronics/${product.id}/${product.image}`
-    const img = `http://crazydeals.test/images/${product.image}`
+    const img = `images/${product.image}`
 
     const data = () => {
         return <div className="product">

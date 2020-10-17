@@ -42,8 +42,6 @@ const Item = (props) => {
 
     const { id, category } = props.match.params
     const [item, setItem] = useState([]);
-    const [images, setImages] = useState([]);
-    const [cart, setCart] = useState([])
     const [selectedQuantity, setSelectedQuantity] = useState(1)
 
 

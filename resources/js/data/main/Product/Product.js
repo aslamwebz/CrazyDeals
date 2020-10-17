@@ -95,7 +95,7 @@ const Product = (props) => {
     // }
 
     // const image = `images/electronics/${product.id}/${product.image}`
-    const img = `images/${product.image}`
+    const img = `${document.location.origin}/images/${product.image}`
 
     const data = () => {
         return <div className="product">
